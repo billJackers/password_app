@@ -58,6 +58,11 @@ class _MyHomePageState extends State<MyHomePage> {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => SuccessPage())
         );
+      } else if (input.length == password.length) {
+        input = "";
+        Navigator.push(
+          context, MaterialPageRoute(builder: (context) => IncorrectPasswordPage())
+        );
       }
     });
   }
@@ -208,6 +213,33 @@ class SuccessPage extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+}
+
+class IncorrectPasswordPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text("Incorrect password!\n", style: TextStyle(
+            color: Colors.black
+          )),
+          FlatButton(
+            child: Text("\n  Reenter password  \n", style: TextStyle(
+              fontSize: 20.0
+            )),
+            onPressed: () {
+              Navigator.push(
+                context, MaterialPageRoute(builder: (context) => MyHomePage(title: "Password App"))
+              );
+            },
+            color: Colors.blue
+          )
+        ]
+      )
     );
   }
 }
